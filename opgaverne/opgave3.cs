@@ -5,15 +5,22 @@ namespace opgave3
     class Program
     {
         public Program() {
-            string str = "Jeg boller med din lille søster hver dag";
-            int count = 0;
-            char[] ch = str.ToCharArray();
             Console.Clear();
             Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
-            //string GivenString = Console.ReadLine();
-            foreach (char c in ch) {
-                Console.WriteLine(c);
+            int count = 0;
+            string GivenString = Console.ReadLine();
+            char[] ch = GivenString.ToCharArray();
+            foreach(char i in ch) {
+                if(i.ToString() == " ") {
+                    count++;
+                }
             }
+            if(count > 0) {
+                Console.WriteLine("Der er " + count + "mellemrum i sætningen!");
+            } else {
+                Console.WriteLine("Der er ingen mellemrum i sætningen!");
+            }
+            //KørIgen();
         }
     }
 }

@@ -46,22 +46,34 @@ namespace Strings_C_
             KørIgen();
         }
 
+        static void Opgave3() {
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
+            int count = 0;
+            string GivenString = Console.ReadLine();
+            char[] ch = GivenString.ToCharArray();
+            foreach(char i in ch) {
+                if(i.ToString() == " ") {
+                    count++;
+                }
+            }
+            if(count > 0) {
+                Console.WriteLine("Der er " + count + " mellemrum i sætningen!");
+            } else {
+                Console.WriteLine("Der er ingen mellemrum i sætningen!");
+            }
+            KørIgen();
+        }
+
         static void KørIgen() {
+            System.Threading.Thread.Sleep(1500);
+            Console.Clear();
             Console.WriteLine("Gå Tilbage?");
             Console.Write("Ja/Nej: ");
             string GivenString = Console.ReadLine().ToUpper();
             if(GivenString == "JA") {
                 VælgOpgave();
             }
-        }
-
-        static void Opgave3() {
-            string str = "Jeg boller med din lille søster hver dag";
-            int count = 0;
-            char[] ch = str.ToCharArray();
-            Console.Clear();
-            Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
-            //string GivenString = Console.ReadLine();
         }
 
     }
