@@ -20,6 +20,9 @@ namespace Strings_C_
             if (ValgtOpgave == "2") {
                 Opgave2();
             }
+            if (ValgtOpgave == "3") {
+                Opgave3();
+            }
         }
         static void Opgave1() {
             Console.Clear();
@@ -27,11 +30,11 @@ namespace Strings_C_
             string GivenString = Console.ReadLine();
             if(GivenString.IndexOf(" ", 0) == -1) {
                 Console.WriteLine("Der er intet mellemrum i din sætning!");
-                Console.ReadLine();
+                KørIgen();
             } else {
                 int plads = GivenString.IndexOf(" ", 0) + 1;
                 Console.WriteLine("Det første mellemrum er på plads: " + plads);    
-                Console.ReadLine();        
+                KørIgen();       
             }
         }
 
@@ -40,14 +43,25 @@ namespace Strings_C_
             Console.WriteLine("Skriv en sætning og jeg vil fjerne alt før det første mellemrum!");
             string GivenString = Console.ReadLine();
             Console.WriteLine(GivenString.Substring(GivenString.IndexOf(" ", 0) + 1));
-            Console.ReadLine();
+            KørIgen();
         }
 
         static void KørIgen() {
+            Console.WriteLine("Gå Tilbage?");
+            Console.Write("Ja/Nej: ");
             string GivenString = Console.ReadLine().ToUpper();
             if(GivenString == "JA") {
                 VælgOpgave();
             }
+        }
+
+        static void Opgave3() {
+            string str = "Jeg boller med din lille søster hver dag";
+            int count = 0;
+            char[] ch = str.ToCharArray();
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
+            //string GivenString = Console.ReadLine();
         }
 
     }

@@ -10,7 +10,10 @@ namespace opgave3
             char[] ch = str.ToCharArray();
             Console.Clear();
             Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
-            //string GivenString = Console.ReadLine();¨
+            //string GivenString = Console.ReadLine();
+            foreach (char c in ch) {
+                Console.WriteLine(c);
+            }
         }
     }
 }
