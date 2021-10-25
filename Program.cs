@@ -4,12 +4,21 @@ namespace Strings_C_
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
+            VælgOpgave();
+        }
+
+        static void VælgOpgave() {
             Console.Clear();
             Console.WriteLine("Vælg en opgave mellem 1 og 7!");
-            if(Console.ReadLine() == "1"){
+
+            string ValgtOpgave = Console.ReadLine();
+
+            if(ValgtOpgave == "1"){
                 Opgave1();
+            } 
+            if (ValgtOpgave == "2") {
+                Opgave2();
             }
         }
         static void Opgave1() {
@@ -26,7 +35,20 @@ namespace Strings_C_
             }
         }
 
+        static void Opgave2() {
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning og jeg vil fjerne alt før det første mellemrum!");
+            string GivenString = Console.ReadLine();
+            Console.WriteLine(GivenString.Substring(GivenString.IndexOf(" ", 0) + 1));
+            Console.ReadLine();
+        }
 
+        static void KørIgen() {
+            string GivenString = Console.ReadLine().ToUpper();
+            if(GivenString == "JA") {
+                VælgOpgave();
+            }
+        }
 
     }
 }
