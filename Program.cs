@@ -97,12 +97,37 @@ namespace Strings_C_
             Console.WriteLine("Skriv en sætning med ordet 'måske' og gerne bruge det mere end en gang!");
             Console.WriteLine("Og så vil jeg fjerne dem alle");
             string GivenString = Console.ReadLine();
-            Console.WriteLine(GivenString.ToUpper().Replace("MÅSKE", "").ToLower());
+            string[] arr = GivenString.Split(" ");
+            int count = 0;
+
+
+            for(int i = 0; i < arr.Length; i++) {
+                if(arr[i].ToUpper() == "MÅSKE") {
+                    count++;
+                }
+            }
+            for(int l = 0; l < count; l++) {
+                bool maybe = false;
+                for(int i = 0; i < arr.Length; i++) {
+                if(arr[i].ToUpper() == "MÅSKE") {
+                    maybe = true;
+                }
+                if(maybe && i != arr.Length-1) {
+                    arr[i] = arr[i+1];
+                } else if(i == arr.Length - 1) {
+                    arr[i] = "";
+                }
+            }
+            }
+            Console.WriteLine(string.Join(" ", arr));
+
+
+            //Console.WriteLine(GivenString.ToUpper().Replace("MÅSKE", "").ToLower());
             KørIgen();
         }
 
         static void KørIgen() {
-            System.Threading.Thread.Sleep(1500);
+            System.Threading.Thread.Sleep(2000);
             Console.Clear();
             Console.WriteLine("Gå Tilbage?");
             Console.Write("Ja/Nej: ");
