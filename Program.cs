@@ -98,8 +98,7 @@ namespace Strings_C_
 
         static void Opgave5() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning med ordet 'måske' og gerne bruge det mere end en gang!");
-            Console.WriteLine("Og så vil jeg fjerne dem alle");
+            Console.WriteLine("Skriv en sætning med ordet 'måske' og jeg vil fjerne dem");
             string GivenString = Console.ReadLine();
             string[] arr = GivenString.Split(" ");
             int count = 0;
@@ -124,9 +123,6 @@ namespace Strings_C_
             }
             }
             Console.WriteLine(string.Join(" ", arr));
-
-
-            //Console.WriteLine(GivenString.ToUpper().Replace("MÅSKE", "").ToLower());
             KørIgen();
         }
 
