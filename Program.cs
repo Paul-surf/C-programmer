@@ -79,21 +79,26 @@ namespace Strings_C_
             Console.Clear();
             Console.WriteLine("Skriv en sætning med ordet 'måske' og jeg vil fjerne det første 'måske' jeg støder på");
             string GivenString = Console.ReadLine();
-            string[] arr = GivenString.Split(" ");
-            bool maybe = false;
+            if(GivenString.ToUpper() != "MÅSKE" && GivenString.Split(" ").Length == 1) {
+                Console.WriteLine(GivenString.Split(" ")[0]);
+            } else {
+                string[] arr = GivenString.Split(" ");
+                bool maybe = false;
 
-            for(int i = 0; i < arr.Length; i++) {
-                if(arr[i].ToUpper() == "MÅSKE") {
-                    maybe = true;
+                for(int i = 0; i < arr.Length; i++) {
+                    if(arr[i].ToUpper() == "MÅSKE") {
+                        maybe = true;
+                    }
+                    if(maybe && i != arr.Length-1) {
+                        arr[i] = arr[i+1];
+                    } else if(i == arr.Length - 1) {
+                        arr[i] = "";
+                    }
                 }
-                if(maybe && i != arr.Length-1) {
-                    arr[i] = arr[i+1];
-                } else if(i == arr.Length - 1) {
-                    arr[i] = "";
-                }
+                
+                Console.WriteLine(string.Join(" ", arr));
             }
-            
-            Console.WriteLine(string.Join(" ", arr));
+            KørIgen();
         }
 
         static void Opgave5() {
