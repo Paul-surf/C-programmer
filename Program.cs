@@ -23,6 +23,9 @@ namespace Strings_C_
             if (ValgtOpgave == "3") {
                 Opgave3();
             }
+            if (ValgtOpgave == "4") {
+                Opgave4();
+            }
             if (ValgtOpgave == "5") {
                 Opgave5();
             }
@@ -66,6 +69,27 @@ namespace Strings_C_
                 Console.WriteLine("Der er ingen mellemrum i sætningen!");
             }
             KørIgen();
+        }
+
+        static void Opgave4() {
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning med ordet 'måske' og jeg vil fjerne det første 'måske' jeg støder på");
+            string GivenString = Console.ReadLine();
+            string[] arr = GivenString.Split(" ");
+            bool maybe = false;
+
+            for(int i = 0; i < arr.Length; i++) {
+                if(arr[i].ToUpper() == "MÅSKE") {
+                    maybe = true;
+                }
+                if(maybe && i != arr.Length-1) {
+                    arr[i] = arr[i+1];
+                } else if(i == arr.Length - 1) {
+                    arr[i] = "";
+                }
+            }
+            
+            Console.WriteLine(string.Join(" ", arr));
         }
 
         static void Opgave5() {
