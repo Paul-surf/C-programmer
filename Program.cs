@@ -4,6 +4,8 @@ namespace Strings_C_
 {
     class Program
     {
+
+        static int GåTilbageWrongCount = 0;
         static void Main(string[] args) {
             Console.ForegroundColor = ConsoleColor.Green;
             VælgOpgave();
@@ -11,6 +13,7 @@ namespace Strings_C_
 
         static void VælgOpgave() {
             Console.Clear();
+            GåTilbageWrongCount = 0;
             Console.WriteLine("Vælg en opgave mellem 1 og 7!");
 
             string ValgtOpgave = Console.ReadLine();
@@ -155,15 +158,32 @@ namespace Strings_C_
             Console.Clear();
             Console.WriteLine("Gå Tilbage?");
             Console.Write("Ja/Nej: ");
-            string GivenString = Console.ReadLine().ToUpper();
-            if(GivenString == "JA") {
-                VælgOpgave();
-            } else {
-                Console.Clear();
-                Console.WriteLine("Shutting down...");
-                System.Threading.Thread.Sleep(1000);
+            string GivenString = "";
+            while(GivenString != "JA" && GivenString != "NEJ") {
+                GivenString = Console.ReadLine().ToUpper();
+                if(GivenString == "JA") {
+                    VælgOpgave();
+                } else if(GivenString == "NEJ"){
+                    Console.Clear();
+                    Console.WriteLine("Shutting down...");
+                    System.Threading.Thread.Sleep(1000);
+                    System.Environment.Exit(0);
+                } else {
+                    Console.Clear();
+                    if(GåTilbageWrongCount == 2) {
+                        Console.WriteLine("Du har nået de maksimale forsøg!");
+                        System.Threading.Thread.Sleep(1000);
+                        Console.WriteLine("Shutting down...");
+                        System.Threading.Thread.Sleep(1000);
+                        System.Environment.Exit(0);
+                    } else {
+                        GåTilbageWrongCount++;
+                        Console.WriteLine("Svar enten Ja eller Nej! " + "(" + (3 - GåTilbageWrongCount) + " Forsøg tilbage)");
+                        System.Threading.Thread.Sleep(1000);
+                        KørIgen();
+                    }
+                }
             }
         }
-
     }
 }
