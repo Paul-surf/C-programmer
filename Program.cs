@@ -5,6 +5,7 @@ namespace Strings_C_
     class Program
     {
         static void Main(string[] args) {
+            Console.ForegroundColor = ConsoleColor.Green;
             VælgOpgave();
         }
 
@@ -28,6 +29,9 @@ namespace Strings_C_
             }
             if (ValgtOpgave == "5") {
                 Opgave5();
+            }
+            if (ValgtOpgave == "6") {
+                Opgave6();
             }
         }
         static void Opgave1() {
@@ -126,6 +130,25 @@ namespace Strings_C_
             KørIgen();
         }
 
+        static void Opgave6() {
+            Console.Clear(); 
+            string GivenString, ReverseString = string.Empty;  
+            Console.Write("Skriv et ord, så tjekker jeg om det er en palindrome!");
+            Console.WriteLine("");  
+            GivenString = Console.ReadLine();  
+            if (GivenString != null) {
+                for (int i = GivenString.Length - 1; i >= 0; i--)  {  
+                    ReverseString += GivenString[i].ToString();  
+                }
+                if (ReverseString == GivenString) {  
+                    Console.WriteLine("Ja, '{0}' er en Palindrome", GivenString, ReverseString);  
+                } else {  
+                    Console.WriteLine("Nej, '{0}' er ikke en palindrome", GivenString, ReverseString);  
+                }  
+            }  
+            KørIgen();
+        }
+
         static void KørIgen() {
             System.Threading.Thread.Sleep(2000);
             Console.Clear();
@@ -134,6 +157,10 @@ namespace Strings_C_
             string GivenString = Console.ReadLine().ToUpper();
             if(GivenString == "JA") {
                 VælgOpgave();
+            } else {
+                Console.Clear();
+                Console.WriteLine("Shutting down...");
+                System.Threading.Thread.Sleep(1000);
             }
         }
 
