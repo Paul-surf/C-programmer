@@ -23,6 +23,9 @@ namespace Strings_C_
             if (ValgtOpgave == "3") {
                 Opgave3();
             }
+            if (ValgtOpgave == "5") {
+                Opgave5();
+            }
         }
         static void Opgave1() {
             Console.Clear();
@@ -62,6 +65,15 @@ namespace Strings_C_
             } else {
                 Console.WriteLine("Der er ingen mellemrum i sætningen!");
             }
+            KørIgen();
+        }
+
+        static void Opgave5() {
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning med ordet 'måske' og gerne bruge det mere end en gang!");
+            Console.WriteLine("Og så vil jeg fjerne dem alle");
+            string GivenString = Console.ReadLine();
+            Console.WriteLine(GivenString.ToUpper().Replace("MÅSKE", "").ToLower());
             KørIgen();
         }
 
