@@ -5,66 +5,82 @@ namespace Strings_C_
     class Program
     {
 
-        static int GåTilbageWrongCount = 0;
+        static int GoBackWrongCount = 0;
+        static int ChooseTaskWrongCount = 0;
         static void Main(string[] args) {
             Console.ForegroundColor = ConsoleColor.Green;
-            VælgOpgave();
+            ChooseTask();
         }
 
-        static void VælgOpgave() {
+        static void ChooseTask() {
             Console.Clear();
-            GåTilbageWrongCount = 0;
-            Console.WriteLine("Vælg en opgave mellem 1 og 7!");
+            GoBackWrongCount = 0;
+            TypeWrite("Choose a task between 1 and 7!");
 
-            string ValgtOpgave = Console.ReadLine();
+            string ChosenTask = Console.ReadLine();
 
-            if(ValgtOpgave == "1"){
-                Opgave1();
-            } 
-            if (ValgtOpgave == "2") {
-                Opgave2();
-            }
-            if (ValgtOpgave == "3") {
-                Opgave3();
-            }
-            if (ValgtOpgave == "4") {
-                Opgave4();
-            }
-            if (ValgtOpgave == "5") {
-                Opgave5();
-            }
-            if (ValgtOpgave == "6") {
-                Opgave6();
-            }
-            if (ValgtOpgave == "7") {
-                Opgave7();
+            if(ChosenTask == "1"){
+                Task1();
+            } else
+            if (ChosenTask == "2") {
+                Task2();
+            } else
+            if (ChosenTask == "3") {
+                Task3();
+            } else
+            if (ChosenTask == "4") {
+                Task4();
+            } else
+            if (ChosenTask == "5") {
+                Task5();
+            } else
+            if (ChosenTask == "6") {
+                Task6();
+            } else 
+            if (ChosenTask == "7") {
+                Task7();
+            } else {
+                Console.Clear();
+                ChooseTaskWrongCount++;
+                if(ChooseTaskWrongCount > 2) {
+                    TypeWrite("You have used the maximum amount of tries!");
+                    System.Threading.Thread.Sleep(1000);
+                    TypeWrite("Shutting down...");
+                    System.Threading.Thread.Sleep(1000);
+                    System.Environment.Exit(0);
+                } else {
+                    TypeWrite("Write a number between 1 and 7!" + " ({0} Tries left!)", (3-ChooseTaskWrongCount));
+                    System.Threading.Thread.Sleep(2000);
+                    ChooseTask();
+                }
             }
         }
-        static void Opgave1() {
+        static void Task1() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor det første mellemrum er!");
+            TypeWrite("Write a sentence and I will tell you, where the first space is!");
             string GivenString = Console.ReadLine();
             if(GivenString.IndexOf(" ", 0) == -1) {
-                Console.WriteLine("Der er intet mellemrum i din sætning!");
-                KørIgen();
+                TypeWrite("There aren't any spaces in your sentence!");
+                Retry();
             } else {
-                int plads = GivenString.IndexOf(" ", 0) + 1;
-                Console.WriteLine("Det første mellemrum er på plads: " + plads);    
-                KørIgen();       
+                int place = GivenString.IndexOf(" ", 0) + 1;
+                TypeWrite("The first space is on space: {0}!", place);    
+                Retry();       
             }
         }
 
-        static void Opgave2() {
+        static void Task2() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning og jeg vil fjerne alt før det første mellemrum!");
+            TypeWrite("Skriv en sætning og jeg vil fjerne alt før det første mellemrum!");
+            TypeWrite("Write a sentence and I will delete everything before it!");
             string GivenString = Console.ReadLine();
-            Console.WriteLine(GivenString.Substring(GivenString.IndexOf(" ", 0) + 1));
-            KørIgen();
+            TypeWrite(GivenString.Substring(GivenString.IndexOf(" ", 0) + 1));
+            Retry();
         }
 
-        static void Opgave3() {
+        static void Task3() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
+            TypeWrite("Skriv en sætning og jeg vil fortælle dig, hvor mange mellemrum der er!");
             int count = 0;
             string GivenString = Console.ReadLine();
             char[] ch = GivenString.ToCharArray();
@@ -74,19 +90,19 @@ namespace Strings_C_
                 }
             }
             if(count > 0) {
-                Console.WriteLine("Der er " + count + " mellemrum i sætningen!");
+                TypeWrite("Der er " + count + " mellemrum i sætningen!");
             } else {
-                Console.WriteLine("Der er ingen mellemrum i sætningen!");
+                TypeWrite("Der er ingen mellemrum i sætningen!");
             }
-            KørIgen();
+            Retry();
         }
 
-        static void Opgave4() {
+        static void Task4() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning med ordet 'måske' og jeg vil fjerne det første 'måske' jeg støder på");
+            TypeWrite("Skriv en sætning med ordet 'måske' og jeg vil fjerne det første 'måske' jeg støder på");
             string GivenString = Console.ReadLine();
             if(GivenString.ToUpper() != "MÅSKE" && GivenString.Split(" ").Length == 1) {
-                Console.WriteLine(GivenString.Split(" ")[0]);
+                TypeWrite(GivenString.Split(" ")[0]);
             } else {
                 string[] arr = GivenString.Split(" ");
                 bool maybe = false;
@@ -102,14 +118,14 @@ namespace Strings_C_
                     }
                 }
                 
-                Console.WriteLine(string.Join(" ", arr));
+                TypeWrite(string.Join(" ", arr));
             }
-            KørIgen();
+            Retry();
         }
 
-        static void Opgave5() {
+        static void Task5() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning med ordet 'måske' og jeg vil fjerne dem");
+            TypeWrite("Skriv en sætning med ordet 'måske' og jeg vil fjerne dem");
             string GivenString = Console.ReadLine();
             string[] arr = GivenString.Split(" ");
             int count = 0;
@@ -133,32 +149,32 @@ namespace Strings_C_
                 }
             }
             }
-            Console.WriteLine(string.Join(" ", arr));
-            KørIgen();
+            TypeWrite(string.Join(" ", arr));
+            Retry();
         }
 
-        static void Opgave6() {
+        static void Task6() {
             Console.Clear(); 
             string GivenString, ReverseString = string.Empty;  
             Console.Write("Skriv et ord, så tjekker jeg om det er en palindrome!");
-            Console.WriteLine("");  
+            TypeWrite("");  
             GivenString = Console.ReadLine();  
             if (GivenString != null) {
                 for (int i = GivenString.Length - 1; i >= 0; i--)  {  
                     ReverseString += GivenString[i].ToString();  
                 }
                 if (ReverseString == GivenString) {  
-                    Console.WriteLine("Ja, '{0}' er en Palindrome", GivenString, ReverseString);  
+                    TypeWrite("Ja, " + GivenString + " er palindrome");  
                 } else {  
-                    Console.WriteLine("Nej, '{0}' er ikke en palindrome", GivenString, ReverseString);  
+                    TypeWrite("Nej, " + GivenString + " er ikke palindrome");  
                 }  
             }  
-            KørIgen();
+            Retry();
         }
 
-        static void Opgave7() {
+        static void Task7() {
             Console.Clear();
-            Console.WriteLine("Skriv en sætning og jeg vil tjekke om den er palindrome! (Jeg ser bort fra mellemrum og special tegn)");
+            TypeWrite("Skriv en sætning og jeg vil tjekke om den er palindrome! (Jeg ser bort fra mellemrum og special tegn)");
             string GivenString = Console.ReadLine().ToUpper();
             string[] arr = GivenString.Split(" ");
             string arrString = string.Join("", arr);
@@ -172,44 +188,68 @@ namespace Strings_C_
             }
             string ReversedString = string.Join("", TempArr2);
             if(arrString == ReversedString) {
-                Console.WriteLine("The given text is Palindrome!");
+                TypeWrite("The given text is Palindrome!");
             } else {
-                Console.WriteLine("The given string is NOT Palindrome!");
+                TypeWrite("The given string is NOT Palindrome!");
             }
-            KørIgen();
+            Retry();
         }
 
-        static void KørIgen() {
+        static void Retry() {
             System.Threading.Thread.Sleep(2000);
             Console.Clear();
-            Console.WriteLine("Gå Tilbage?");
-            Console.Write("Ja/Nej: ");
+            TypeWrite("Gå Tilbage?");
+            TypeWriteSingle("Ja/Nej: ");
             string GivenString = "";
             while(GivenString != "JA" && GivenString != "NEJ") {
                 GivenString = Console.ReadLine().ToUpper();
                 if(GivenString == "JA") {
-                    VælgOpgave();
+                    ChooseTaskWrongCount = 0;
+                    ChooseTask();
                 } else if(GivenString == "NEJ"){
                     Console.Clear();
-                    Console.WriteLine("Shutting down...");
+                    TypeWrite("Shutting down...");
                     System.Threading.Thread.Sleep(1000);
                     System.Environment.Exit(0);
                 } else {
                     Console.Clear();
-                    if(GåTilbageWrongCount == 2) {
-                        Console.WriteLine("Du har nået de maksimale forsøg!");
+                    if(GoBackWrongCount == 2) {
+                        TypeWrite("Du har nået de maksimale forsøg!");
                         System.Threading.Thread.Sleep(1000);
-                        Console.WriteLine("Shutting down...");
+                        TypeWrite("Shutting down...");
                         System.Threading.Thread.Sleep(1000);
                         System.Environment.Exit(0);
                     } else {
-                        GåTilbageWrongCount++;
-                        Console.WriteLine("Svar enten Ja eller Nej! " + "(" + (3 - GåTilbageWrongCount) + " Forsøg tilbage)");
+                        GoBackWrongCount++;
+                        TypeWrite("Svar enten Ja eller Nej! " + "({0} forsøg tilbage)", (3-GoBackWrongCount));
                         System.Threading.Thread.Sleep(1000);
-                        KørIgen();
+                        Retry();
                     }
                 }
             }
         }
+
+        static void TypeWriteSingle(string GivenString) {
+            for(int i = 0; i < GivenString.Length; i++) {
+                Console.Write(GivenString[i]);
+                System.Threading.Thread.Sleep(40);
+            }
+        }
+        static void TypeWrite(string GivenString) {
+            for(int i = 0; i < GivenString.Length; i++) {
+                Console.Write(GivenString[i]);
+                System.Threading.Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+        static void TypeWrite(string GivenString, int GivenInt) {
+            GivenString = GivenString.Replace("{0}", GivenInt.ToString());
+            for(int i = 0; i < GivenString.Length; i++) {
+                Console.Write(GivenString[i]);
+                System.Threading.Thread.Sleep(35);
+            }
+            Console.WriteLine();
+        }
+
     }
 }
