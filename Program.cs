@@ -36,6 +36,9 @@ namespace Strings_C_
             if (ValgtOpgave == "6") {
                 Opgave6();
             }
+            if (ValgtOpgave == "7") {
+                Opgave7();
+            }
         }
         static void Opgave1() {
             Console.Clear();
@@ -150,6 +153,29 @@ namespace Strings_C_
                     Console.WriteLine("Nej, '{0}' er ikke en palindrome", GivenString, ReverseString);  
                 }  
             }  
+            KørIgen();
+        }
+
+        static void Opgave7() {
+            Console.Clear();
+            Console.WriteLine("Skriv en sætning og jeg vil tjekke om den er palindrome! (Jeg ser bort fra mellemrum og special tegn)");
+            string GivenString = Console.ReadLine().ToUpper();
+            string[] arr = GivenString.Split(" ");
+            string arrString = string.Join("", arr);
+            arrString = arrString.Replace(",", "").Replace(".", "").Replace("?", "").Replace("!", "").Replace("*", "").Replace("/", "").Replace("=", "");
+            char[] TempArr = arrString.ToCharArray();
+            char[] TempArr2 = new char[TempArr.Length];
+            int TempCount = 0;
+            for(int i = TempArr.Length-1; i >= 0; i--) {
+                 TempArr2[TempCount] = TempArr[i];
+                 TempCount++;
+            }
+            string ReversedString = string.Join("", TempArr2);
+            if(arrString == ReversedString) {
+                Console.WriteLine("The given text is Palindrome!");
+            } else {
+                Console.WriteLine("The given string is NOT Palindrome!");
+            }
             KørIgen();
         }
 
